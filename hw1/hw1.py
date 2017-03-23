@@ -237,7 +237,7 @@ def read_sec_model(model) :
 fileName=sys.argv[1]#'train.csv'
 testfile=sys.argv[2]#'test_X.csv'
 res=sys.argv[3]#'res.csv'
-model='model_best.csv'
+model='model.csv'
 
 norm=True
 
