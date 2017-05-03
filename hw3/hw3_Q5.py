@@ -19,22 +19,7 @@ from keras.callbacks import EarlyStopping
 from keras import backend as K
 
 
-##  json_file = open('hw3_architecture.json', 'r')
-##  loaded_model_json = json_file.read()
-##  json_file.close()
-##  model = model_from_json(loaded_model_json)
-##  model.load_weights('hw3_model_weights.h5')
-##  
-##  model = load_model('hw3_model.h5')
-##  layer_name = 'conv64_1'
-##  layer_idx = [idx for idx, layer in enumerate(model.layers) if layer.name == layer_name][0]
-##  filters = np.arange(get_num_filters(model.layers[layer_idx]))
-##  vis_images = [visualize_activation(model, layer_idx, filter_indices=idx, text=str(idx))
-##                for idx in filters]
-##  
-##  plt.figure()
-##  plt.imshow(vis_images[0])
-##  plt.savefig('test.png')
+
 def deprocess_image(x):
     # normalize tensor: center on 0., ensure std is 0.1
     x -= x.mean()
