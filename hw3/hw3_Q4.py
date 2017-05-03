@@ -20,21 +20,30 @@ from keras.callbacks import EarlyStopping
 import keras.backend as K
 from hw3_utils import*
 
+
+########if you want to run my code please modify path of train.csv and test.csv#########
 train_csv='./data/train.csv'
 test_csv='./data/test.csv'
+
+
 res='./res_Q4.csv'
 num_classes=7
-##X_train,Y_train=readTrain(train_csv)
-##Y_train = np_utils.to_categorical(Y_train, num_classes)
-##X_val=X_train[25000:]
-##Y_val=Y_train[25000:]
-##
-emotion_classifier = load_model('hw3_model.h5')
+
+
+
+####load model#####
+model_arch='hw3_architecture.json'
+json_file = open(model_arch, 'r')
+loaded_model_json = json_file.read()
+json_file.close()
+emotion_classifier = model_from_json(loaded_model_json)
+emotion_classifier.load_weights('hw3_model_weights.h5')
+
+
 res_img='./res_img/'
 private_pixels=readTest(test_csv);
 
-##Y_test=emotion_classifier.predict(private_pixels, batch_size=100)
-##Y_test=np.argmax(Y_test,axis=1)
+
 ##writeResult(Y_test,res)
 
 private_pixels = [private_pixels[i].reshape((1, 48, 48, 1))
@@ -65,7 +74,9 @@ for idx in img_ids:
     print(grads.shape)
     
     heatmap = fn([private_pixels[idx], 0])[0].reshape(2304)
-    thres = 0.9
+    ######I have modify thres to get different in my paper
+    thres = 0.5
+    #####
     heatmap = (heatmap - heatmap.min()) / (heatmap.max() - heatmap.min())
     heatmap = heatmap.reshape(48, 48)   
     #print(dtype(heatmap))
