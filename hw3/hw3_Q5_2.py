@@ -21,6 +21,7 @@ from keras import backend as K
 from hw3_utils import *
 
 def main():
+    #####if you want to run my code please modify the path for test.csv########
     test_csv='./data/test.csv'
     
     json_file = open('hw3_architecture.json', 'r')
