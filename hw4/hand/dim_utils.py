@@ -76,10 +76,8 @@ def gen_data(dim, layer_dims, N):
 
 def get_eigenvalues(data):
 
-    SAMPLE = round(len(data)/1000) # sample some points to estimate
-    if SAMPLE<20:
-        SAMPLE=20
-    NEIGHBOR = 200 # pick some neighbor to compute the eigenvalues
+    SAMPLE=10
+    NEIGHBOR = 20 # pick some neighbor to compute the eigenvalues
 
     randidx = np.random.permutation(data.shape[0])[:SAMPLE]
 

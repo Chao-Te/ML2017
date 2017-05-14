@@ -31,10 +31,10 @@ def readImg():
         im=np.array(im)
         data.append(np.reshape(im,h*w))
     data=np.array(data).astype(float)
-    pmin=np.amin(data)
-    max=np.amax(data)
-    data=data-min
-    data=data/(max-min)
+    #min=np.amin(data)
+    #max=np.amax(data)
+    #data=data-min
+    #data=data/(max-min)
     return data
 
 
