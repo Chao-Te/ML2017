@@ -25,12 +25,12 @@ def readModel(weights_name, arc_name) :
     
     return model
 
-def savePredict(resfile, predict) :
+def savePredict(resfile, predict,test_id) :
     f = open (resfile, 'w')
     wf = csv.writer(f)
     wf.writerow(['TestDataID', 'Rating'])
     for i in range(len(predict)):
-        wf.writerow([i+1, predict[i][0]])
+        wf.writerow([test_id[i], predict[i][0]])
     f.close()
 
 def main(dir_path, res_path) :
@@ -49,7 +49,7 @@ def main(dir_path, res_path) :
     testing = pandas.read_csv(testfile, engine='python', sep=',')
 
 
-    test_id = testing.TestDataID
+    test_id = testing.TestDataID.values
     test_movie_id = testing.MovieID.values-1
     test_user_id = testing.UserID.values-1
 
@@ -57,7 +57,7 @@ def main(dir_path, res_path) :
 
     y_pred = model.predict([test_movie_id,test_user_id], batch_size = 512)
 
-    savePredict(predict_name, y_pred)
+    savePredict(predict_name, y_pred,test_id)
 
 
 if __name__ == '__main__' :
